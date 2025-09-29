@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ambulance Request Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #fff7f0;
+        margin: 0;
+        padding: 0;
+      }
+
+      .form-container {
+        width: 90%;
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(255, 94, 0, 0.25);
+      }
+
+      h2 {
+        text-align: center;
+        color: #ff5e00;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-weight: bold;
+        display: block;
+        margin: 10px 0 5px;
+        color: #333;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        background: #ff5e00;
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      button:hover {
+        background: #e04d00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>🚑 Ambulance Request Form</h2>
+      <form>
+        <label for="name">Patient Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="age">Patient Age</label>
+        <input type="number" id="age" name="age" min="1" required />
+
+        <label for="phone">Contact Number</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="10-digit mobile number"
+          required
+        />
+
+        <label for="emergency">Type of Emergency</label>
+        <select id="emergency" name="emergency" required>
+          <option value="">-- Select Emergency --</option>
+          <option value="accident">Accident</option>
+          <option value="cardiac">Cardiac Emergency</option>
+          <option value="pregnancy">Pregnancy</option>
+          <option value="other">Other</option>
+        </select>
+        <button type="button" onclick="window.location.href='ambulance.html'">
+          Request Ambulance
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

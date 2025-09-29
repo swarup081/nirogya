@@ -1,0 +1,268 @@
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+}
+
+header {
+  background-color: #ffffff;
+  padding: 1rem ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+#contact{
+    text-decoration: none;
+    color: white;
+}
+.logo img {
+  height: 40px;
+}
+
+.video-container{
+    display: flex;
+    padding: 10px;
+    margin-right: 10px;
+    width:100%;
+    background:transparent;
+    border-radius:10px;
+    overflow:hidden;
+    position:relative;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* adds space between videos */
+}
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 2rem;
+  background-color: #fff;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 550px;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.features {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.features div {
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fafafa;
+  text-align: center;
+  flex: 1;
+}
+
+.cta-btn {
+  padding: 0.8rem 2rem;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+.hero-image {
+  flex: 1;
+  text-align: center;
+}
+
+.hero-image img {
+  width: 300px;
+  max-width: 100%;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 3rem 2rem;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ddd;
+}
+
+.stat-box {
+  text-align: center;
+}
+
+.stat-box h2 {
+  font-size: 2rem;
+  color: #ff6b6b;
+}
+
+.stat-box p {
+  margin: 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+#location-message {
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 2rem;
+}
+
+#cards-container {
+  display: none;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem;
+}
+
+.card {
+  background: #fff;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ddd;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+#cta-btn1{
+  text-decoration: none;
+  color: #ffffff;
+}
+#regdr{ text-decoration: none;
+  color: #000000;
+  
+}
+#findr{
+  text-decoration: none;
+  color: #000000;
+
+}
+.card img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+.trust-features {
+  background-color: #fff;
+  padding: 3rem 2rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  text-align: center;
+  gap: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.trust-item {
+  max-width: 220px;
+}
+
+.trust-item img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+.trust-item h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.trust-item p {
+  font-size: 0.9rem;
+  color: #555;
+}
+.hero-image {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 1rem;
+  }
+  
+  .hero-image img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  
+  
+    .consult-section {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .consult-box {
+      width: 180px;
+      padding: 15px;
+      border-radius: 12px;
+      background: #fffaf5;
+      box-shadow: 0 4px 10px rgba(255, 94, 0, 0.15);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .consult-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(255, 94, 0, 0.25);
+    }
+
+    .consult-box img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #ffe3d1;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .consult-title {
+      font-size: 15px;
+      font-weight: bold;
+      margin: 10px 0;
+      color: #ff5e00;
+    }
+
+    .consult-link {
+      display: inline-block;
+      margin-top: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #fff;
+      background: #ff5e00;
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }

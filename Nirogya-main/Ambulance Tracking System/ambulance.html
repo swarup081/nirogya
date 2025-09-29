@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ambulance Tracking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #ef922e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+      padding: 20px;
+    }
+    .ambulance-card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .ambulance-card h3 {
+      margin: 0;
+      color: #c62828;
+    }
+    .status {
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 5px;
+    }
+    .free { background: #40d747; color: white; }
+    .engaged { background: #ef6c00; color: white; }
+    iframe {
+      width: 100%;
+      height: 550px;
+      border: 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    /* Status panel */
+    .status-panel {
+      width: 350px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .status-panel h2 {
+      margin-top: 0;
+      color: #e63946;
+    }
+
+    .driver-info {
+      margin: 15px 0;
+      padding: 10px;
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      border-radius: 8px;
+    }
+
+    .timeline {
+      margin-top: 20px;
+      padding-left: 20px;
+      border-left: 3px solid #e63946;
+    }
+
+    .timeline-step {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .timeline-step::before {
+      content: '';
+      width: 15px;
+      height: 15px;
+      background: #e63946;
+      border-radius: 50%;
+      position: absolute;
+      left: -29px;
+      top: 3px;
+      box-shadow: 0 0 10px rgba(215, 154, 159, 0.8);
+    }
+
+    .timeline-step.active::before {
+      background: green;
+    }
+
+    .timeline-step p {
+      margin: 5px 0;
+    }
+
+  </style>
+</head>
+<body>
+  <header>Track your ambulance</header>
+  
+  <div class="container">
+ 
+
+      
+  <!-- Status Panel -->
+  <div class="status-panel">
+    <h2>Track your ambulance </h2>
+    <div class="driver-info">
+      <p><b>Driver:</b> Rajesh Kumar</p>
+      <p><b>Phone:</b> +91 9876543210</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-step active">
+        <h3>📌 Request Received</h3>
+        <p>Patient has requested an ambulance</p>
+      </div>
+      <div class="timeline-step">
+        <h3>🚑 Ambulance Assigned</h3>
+        <p>Driver Rajesh Kumar is on the way</p>
+      </div>
+      <div class="timeline-step">
+        <h3>🏥 Arrived at Hospital</h3>
+        <p>Ambulance has reached Civil Hospital , NABHA </p>
+      </div>
+    </div>
+       <!-- Left Panel: Ambulance Info -->
+    <div>
+      <div class="ambulance-card">
+        <h3>Driver: Ramesh Kumar</h3>
+        <p>Contact: +91 9876543210</p>
+        <span class="status free">Free</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="status free">Contact</span>
+      </div>
+
+      <div class="ambulance-card" style="margin-top:15px;">
+        <h3>Driver: Sita Sharma</h3>
+        <p>Contact: +91 9123456780</p>
+        <span class="status engaged">Engaged</span>
+
+      </div>
+  </div>
+    </div>
+    
+    
+    <!-- Right Panel: Tracking Map -->
+    <div>
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.528876737291!2d92.7932!3d24.7595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374c58cfdf60c02f%3A0x37e9c3e7a60f9d8a!2sNIT%20Silchar!5e0!3m2!1sen!2sin!4v1707723986749!5m2!1sen!2sin" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+          <button class="status engaged"> Call ASHA Worker</button>
+    </div>
+
+  </div>
+  
+</body>
+</html>
