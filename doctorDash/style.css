@@ -1,0 +1,50 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f4f8;
+}
+.kpi-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.kpi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.map-point {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: red;
+    border: 2px solid white;
+    animation: pulse 2s infinite;
+}
+#heatmapToggle:checked + .block + .dot {
+    transform: translateX(100%);
+    background-color: #fff;
+}
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 82, 82, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 82, 82, 0); }
+}
+.heatmap-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 35% 30%, rgba(44, 244, 100, 0.5) 0%, rgba(255, 255, 0, 0) 25%),
+                radial-gradient(circle at 83% 65%, rgba(255, 0, 0, 0.6) 0%, rgba(255, 0, 0, 0) 30%),
+                radial-gradient(circle at 40% 50%, rgba(94, 208, 231, 0.5) 0%, rgba(255, 165, 0, 0) 40%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+.heatmap-visible .heatmap-overlay {
+    opacity: 0.7;
+}
+#consultationView { display: none; }
+#loginView { display: flex; }
+#dashboardView { display: none; }
+#prescriptionModal { display: none; }
+.prescription-line { border-bottom: 1px dotted #999; padding-bottom: 4px; margin-bottom: 4px; }
+#suggestionBox {
+    display: none; /* Hidden by default */
+}

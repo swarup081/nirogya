@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nirogya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/phosphor-icons/1.4.2/css/phosphor.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    
+
+</head>
+<body class="text-gray-800">
+
+    <div id="loginView" class="min-h-screen bg-gray-100 flex-col justify-center items-center p-4">
+        <div class="max-w-md w-full mx-auto">
+            <div class="text-center mb-8">
+                <i class="ph-first-aid-kit text-5xl text-blue-600"></i>
+                <h1 class="text-3xl font-bold text-gray-800 mt-2">Nirogya</h1>
+                <p class="text-gray-500">Rural Healthcare Dashboard Login</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-lg">
+                <div class="space-y-6">
+                    <div>
+                        <label for="username" class="text-sm font-medium text-gray-700">Doctor ID</label>
+                        <input type="text" id="username" value="Dr. A. Sharma" class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="password" class="text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="password" value="password" class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <button id="loginButton" class="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboardView" class="min-h-screen">
+        <header class="bg-white shadow-md sticky top-0 z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center py-4">
+                    <div class="flex items-center space-x-3">
+                        <i class="ph-first-aid-kit text-3xl text-blue-600"></i>
+                        <img src="nirogya.png" width="30rem">
+                        <h1 class="text-2xl font-bold text-gray-900">Nirogya</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-600 font-medium">Welcome, <span id="doctorName"></span></span>
+                        <button id="logoutButton" class="text-gray-500 hover:text-red-600">
+                            <i class="ph-sign-out text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="kpi-card bg-white p-6 rounded-xl shadow flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Today's Appointments</p>
+                        <p class="text-3xl font-bold text-blue-600">15</p>
+                    </div>
+                    <i class="ph-calendar text-4xl text-blue-200"></i>
+                </div>
+                <div class="kpi-card bg-white p-6 rounded-xl shadow flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Pending Follow-ups</p>
+                        <p class="text-3xl font-bold text-yellow-600">8</p>
+                    </div>
+                     <i class="ph-user-list text-4xl text-yellow-200"></i>
+                </div>
+                <div class="kpi-card bg-white p-6 rounded-xl shadow flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Urgent Cases</p>
+                        <p class="text-3xl font-bold text-red-600">2</p>
+                    </div>
+                    <i class="ph-siren text-4xl text-red-200"></i>
+                </div>
+                <div class="kpi-card bg-white p-6 rounded-xl shadow flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">ASHA Worker Messages</p>
+                        <p class="text-3xl font-bold text-green-600">4</p>
+                    </div>
+                    <i class="ph-chat-circle-dots text-4xl text-green-200"></i>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-8">
+                    <div class="bg-white p-6 rounded-xl shadow">
+                         <h2 class="text-xl font-semibold mb-4">Patient Queue & Health Camps</h2>
+                        <div id="appointmentList" class="space-y-4">
+                            </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow">
+                        <h2 class="text-xl font-semibold mb-4">Top Diseases Trend (Last 30 Days)</h2>
+                        <div class="h-64">
+                            <canvas id="diseaseChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="bg-white p-6 rounded-xl shadow">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-semibold">Allocated Villages Map</h2>
+                            <label for="heatmapToggle" class="flex items-center cursor-pointer">
+                                <span class="mr-2 text-sm">Health Heatmap</span>
+                                <div class="relative">
+                                    <input type="checkbox" id="heatmapToggle" class="sr-only">
+                                    <div class="block bg-gray-600 w-10 h-6 rounded-full"></div>
+                                    <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <div id="mapContainer" class="relative bg-gray-200 h-64 rounded-lg overflow-hidden">
+                            <img src="https://images.indianexpress.com/2017/05/google-maps-759.jpg?w=414" class="w-full h-full object-cover">
+                            <div class="map-point" style="top: 15%; left: 20%;"></div><div class="map-point" style="top: 25%; left: 40%;"></div>
+                            <div class="map-point" style="top: 30%; left: 70%;"></div><div class="map-point" style="top: 45%; left: 15%;"></div>
+                            <div class="map-point" style="top: 50%; left: 50%;"></div><div class="map-point" style="top: 60%; left: 80%;"></div>
+                            <div class="map-point" style="top: 70%; left: 25%;"></div><div class="map-point" style="top: 80%; left: 60%;"></div>
+                            <div class="map-point" style="top: 10%; left: 85%;"></div><div class="map-point" style="top: 35%; left: 55%;"></div>
+                            <div class="map-point" style="top: 55%; left: 30%;"></div><div class="map-point" style="top: 65%; left: 5%;"></div>
+                            <div class="map-point" style="top: 85%; left: 35%;"></div><div class="map-point" style="top: 90%; left: 75%;"></div>
+                            <div class="map-point" style="top: 20%; left: 90%;"></div><div class="map-point" style="top: 75%; left: 95%;"></div>
+                            <div class="heatmap-overlay"></div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow">
+                        <h2 class="text-xl font-semibold mb-4">ASHA/CHW Messages</h2>
+                        <div class="space-y-4 max-h-64 overflow-y-auto">
+                            <div class="p-3 bg-blue-50 rounded-lg">
+                                <p class="font-semibold text-blue-800">Sunita Kaur (Rohti Village)</p>
+                                <p class="text-sm text-gray-700">Patient Balwinder Singh (ID: 4521) needs BP check follow-up.</p>
+                                <p class="text-xs text-gray-500 text-right">5 mins ago</p>
+                            </div>
+                             <div class="p-3 bg-blue-50 rounded-lg">
+                                <p class="font-semibold text-blue-800">Ramesh Kumar (Thuhi Village)</p>
+                                <p class="text-sm text-gray-700">Medicine stock for Paracetamol is low at local store.</p>
+                                <p class="text-xs text-gray-500 text-right">1 hour ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="consultationView" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-4">
+        <div class="w-full max-w-6xl h-[90vh] bg-white rounded-2xl shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+            <div class="flex flex-col space-y-4">
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <h3 class="font-bold text-lg">Patient Snapshot</h3>
+                    <p><strong>Name:</strong> <span id="consultPatientName"></span></p>
+                    <p><strong>Village:</strong> <span id="consultPatientVillage"></span></p>
+                    <p><strong>Complaint:</strong> <span id="consultPatientComplaint"></span></p>
+                    <p><strong>History:</strong> <span id="consultPatientHistory"></span></p>
+                </div>
+
+                <div class="flex-grow bg-black rounded-lg flex flex-col items-center justify-center text-white relative">
+                    <i class="ph-video-camera text-8xl text-gray-600"></i>
+                    <p class="mt-4">Live Video Feed</p>
+                     <div class="absolute top-4 left-4 bg-gray-800 bg-opacity-70 p-2 rounded-lg">
+                        Dr. A. Sharma
+                    </div>
+                     <div class="absolute bottom-4 right-4 bg-gray-800 bg-opacity-70 p-2 rounded-lg">
+                        Patient: <span id="videoPatientName"></span>
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center space-x-4 bg-gray-100 p-2 rounded-full">
+                    <button id="endCallButton" class="bg-red-600 text-white px-6 py-3 rounded-full hover:bg-red-700 transition-colors flex items-center font-semibold">
+                        <i class="ph-phone-disconnect text-2xl mr-2"></i> End Call
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex flex-col bg-gray-50 p-4 rounded-lg overflow-y-auto">
+                <h2 class="text-2xl font-bold text-center mb-4 border-b pb-2">E-Prescription</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="font-semibold">Diagnosis / Chief Complaints</label>
+                        <textarea id="diagnosisInput" class="w-full mt-1 p-2 border rounded-md h-24" placeholder="e.g., Viral Fever, Dehydration..."></textarea>
+                    </div>
+                    <div>
+                        <label class="font-semibold">Medication</label>
+                        <div id="medicationList" class="space-y-2 mb-2 border p-2 rounded-md bg-white min-h-[50px]">
+                            </div>
+                        <div class="flex space-x-2">
+                            <div class="relative flex-grow">
+                                <input id="medicationInput" type="text" class="w-full p-2 border rounded-md" placeholder="Search for medicine...">
+                                <div id="suggestionBox" class="absolute z-10 w-full mt-1 bg-white border rounded-md shadow-lg max-h-40 overflow-y-auto">
+                                    </div>
+                            </div>
+                            <button id="addMedicationButton" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 font-semibold">Add</button>
+                        </div>
+                    </div>
+                     <div>
+                        <label class="font-semibold">Advice</label>
+                        <textarea id="adviceInput" class="w-full mt-1 p-2 border rounded-md h-20" placeholder="e.g., Drink plenty of fluids, take rest..."></textarea>
+                    </div>
+                    <div class="pt-4">
+                        <button id="generateRxButton" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition duration-300">
+                           Save & Generate Rx (Punjabi)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="prescriptionModal" class="fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-lg max-w-lg w-full relative">
+            <button id="closeModalButton" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <i class="ph-x text-2xl"></i>
+            </button>
+            <div class="text-center border-b pb-4">
+                <h2 class="text-xl font-bold">Nabha Civil Hospital - Telemedicine Dept.</h2>
+                <p>Doctor: Dr. A. Sharma</p>
+            </div>
+            <div class="py-4">
+                <div class="flex justify-between">
+                    <p><strong>Patient:</strong> <span id="rxPatientName"></span></p>
+                    <p><strong>Date:</strong> <span id="rxDate"></span></p>
+                </div>
+                 <div class="flex justify-between">
+                    <p><strong>Age:</strong> 45</p>
+                    <p><strong>Village:</strong> <span id="rxPatientVillage"></span></p>
+                </div>
+            </div>
+            <div class="mt-4 border-t pt-4">
+                <h3 class="text-lg font-semibold text-center mb-2">Rx (ਪ੍ਰਿਸਕ੍ਰਿਪਸ਼ਨ)</h3>
+                <div id="finalRxList" class="space-y-2">
+                    </div>
+                <div class="mt-4 border-t pt-2">
+                    <div class="prescription-line">
+                        <strong class="mr-2">Advice (ਸਲਾਹ):</strong>
+                        <span id="finalRxAdvice"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 flex flex-col items-center">
+                <img src="https://placehold.co/150x150/000000/FFFFFF?text=QR+Code" alt="QR Code" class="w-36 h-36">
+                <p class="text-sm text-gray-600 mt-2">Scan at Pharmacy</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js">
+       
+    </script>
+</body>
+</html>
