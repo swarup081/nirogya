@@ -144,14 +144,15 @@ function handleUserMessage(message) {
     }
   } else if (conversationState === 'find_doctor') {
     if (lowerCaseMessage.includes('yes')) {
-      addBotMessage('Connecting you to a doctor now...');
-      openDoctorConnectModal();
+        // Redirect to the doctor page
+        window.location.href = 'UserDashboard/userDashboard.html'; 
     } else {
-      addBotMessage('No problem. If you need any further assistance, feel free to ask. Stay healthy!');
-      conversationState = 'initial';
+        addBotMessage('No problem. If you need any further assistance, feel free to ask. Stay healthy!');
+        conversationState = 'initial';
     }
-  }
 }
+  }
+
 
 function addMessage(message, className) {
   const messageElement = document.createElement('div');
